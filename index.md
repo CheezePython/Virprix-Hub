@@ -222,6 +222,98 @@
         color: #888;
         line-height: 1.5;
         font-size: 13px;
+        margin-bottom: 14px;
+    }
+
+    .icon {
+        width: 45px;
+        height: 45px;
+        border: 1px solid #555;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+        margin-bottom: 14px;
+        font-size: 18px;
+    }
+
+    /* Script display box */
+    .script-box {
+        background: #0d0d0d;
+        border: 1px solid #2a2a2a;
+        border-radius: 16px;
+        padding: 20px 22px;
+        margin: 0 0 30px;
+    }
+
+    .script-box-label {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: #555;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .script-text {
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        color: #ccc;
+        word-break: break-all;
+        line-height: 1.6;
+        margin-bottom: 14px;
+        user-select: all;
+    }
+
+    .script-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .copy-btn {
+        border: 1px solid #444;
+        background: #fff;
+        color: #000;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: .2s;
+        letter-spacing: .5px;
+    }
+
+    .copy-btn:hover {
+        background: #ccc;
+    }
+
+    .copy-btn.copied {
+        background: #1a1a1a;
+        color: #aaa;
+        border-color: #333;
+    }
+
+    .discord-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border: 1px solid #5865F2;
+        background: #5865F2;
+        color: #fff;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+        transition: .2s;
+        letter-spacing: .5px;
+    }
+
+    .discord-btn:hover {
+        background: #4752c4;
+        border-color: #4752c4;
+        transform: translateY(-1px);
     }
 
     .stats {
@@ -288,6 +380,10 @@
     <div class="buttons">
         <a class="button" href="#scripts">Get Scripts</a>
         <a class="button dark" href="#about">About VirpriX</a>
+        <a class="discord-btn" href="https://discord.gg/ZfSnnpy8a" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.053a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+            Join Discord
+        </a>
     </div>
 </section>
 
@@ -299,21 +395,27 @@
 
     <div class="cards">
         <div class="card">
-            <div class="icon">V</div>
-            <h3>VirpriX Hub</h3>
-            <p>A constantly updated script hub built for the Roblox community. Free forever — no subscriptions, no keys.</p>
+            <div class="card-body">
+                <div class="icon">V</div>
+                <h3>VirpriX Hub</h3>
+                <p>A constantly updated script hub built for the Roblox community. Free forever — no subscriptions, no keys.</p>
+            </div>
         </div>
 
         <div class="card">
-            <div class="icon">🎮</div>
-            <h3>Many Games Supported</h3>
-            <p>Scripts for popular Roblox titles including Blox Fruits, Anime Defenders, Pet Simulator, Da Hood, and more.</p>
+            <div class="card-body">
+                <div class="icon">🎮</div>
+                <h3>Many Games Supported</h3>
+                <p>Scripts for popular Roblox titles. Rivals, MM2, Slap Battles, and more added regularly.</p>
+            </div>
         </div>
 
         <div class="card">
-            <div class="icon">∞</div>
-            <h3>Always Free</h3>
-            <p>No key system. No survey. No Discord requirement. Copy the script, paste it, run it. That's it.</p>
+            <div class="card-body">
+                <div class="icon">∞</div>
+                <h3>Always Free</h3>
+                <p>No key system. No survey. No Discord requirement. Copy the script, paste it, run it. That's it.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -321,6 +423,19 @@
 <section class="section" id="scripts">
     <h2 class="section-title">Supported Games</h2>
     <p class="section-subtitle">Scripts updated regularly. Paste into any supported executor.</p>
+
+    <!-- Main Script Box -->
+    <div class="script-box">
+        <div class="script-box-label">Main Script</div>
+        <div class="script-text" id="main-script">loadstring(game:HttpGet("https://obfuscatorhub.vercel.app/api/FH7GgW0r"))()</div>
+        <div class="script-actions">
+            <button class="copy-btn" id="copy-btn" onclick="copyScript()">Copy Script</button>
+            <a class="discord-btn" href="https://discord.gg/ZfSnnpy8a" target="_blank">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.053a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+                Join Discord
+            </a>
+        </div>
+    </div>
 
     <div class="cards" id="game-cards">
 
@@ -453,7 +568,7 @@
 </footer>
 
 <script>
-    // Small interactive effect for the Explore button.
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', event => {
             const target = document.querySelector(link.getAttribute('href'));
@@ -463,6 +578,36 @@
             }
         });
     });
+
+    // Copy script
+    function copyScript() {
+        const text = document.getElementById('main-script').innerText;
+        const btn = document.getElementById('copy-btn');
+        navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = 'Copy Script';
+                btn.classList.remove('copied');
+            }, 2000);
+        }).catch(() => {
+            // Fallback for older browsers
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = 'Copy Script';
+                btn.classList.remove('copied');
+            }, 2000);
+        });
+    }
 </script>
 
 </body>
