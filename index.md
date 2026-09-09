@@ -3,1441 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-
-<title>VirpriX Hub — Roblox</title>
-
+<meta name="theme-color" content="#000000">
+<title>VirpriX Hub — Roblox Scripts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        min-height: 100vh;
-        background: #000;
-        color: #fff;
-        font-family: Arial, Helvetica, sans-serif;
-        overflow-x: hidden;
-    }
-
-    /* =========================
-       STAR BACKGROUND
-    ========================= */
-
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        opacity: .45;
-
-        background-image:
-            radial-gradient(circle, #fff 1px, transparent 1px),
-            radial-gradient(circle, #fff 1px, transparent 1px);
-
-        background-size:
-            85px 85px,
-            130px 130px;
-
-        background-position:
-            10px 20px,
-            50px 70px;
-
-        z-index: 0;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-        position: relative;
-        min-height: 100vh;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        padding: 30px 20px;
-        text-align: center;
-
-        overflow: hidden;
-        z-index: 1;
-    }
-
-    /* =========================
-       BLACK HOLE
-    ========================= */
-
-    .black-hole {
-        position: absolute;
-
-        width: 280px;
-        height: 280px;
-
-        border-radius: 50%;
-        background: #000;
-
-        box-shadow:
-            0 0 25px 8px #fff,
-            0 0 65px 18px #555,
-            0 0 120px 30px #222;
-
-        opacity: .8;
-
-        animation: float 5s ease-in-out infinite;
-    }
-
-    .black-hole::before {
-        content: "";
-
-        position: absolute;
-        inset: -38px;
-
-        border: 3px solid #fff;
-        border-radius: 50%;
-
-        opacity: .25;
-
-        transform:
-            rotate(-20deg)
-            scaleY(.35);
-    }
-
-    .black-hole::after {
-        content: "";
-
-        position: absolute;
-        inset: -65px;
-
-        border: 2px solid #777;
-        border-radius: 50%;
-
-        opacity: .18;
-
-        transform:
-            rotate(25deg)
-            scaleY(.27);
-    }
-
-    /* =========================
-       V LOGO
-    ========================= */
-
-    .v {
-        position: relative;
-        z-index: 2;
-
-        font-size: clamp(130px, 35vw, 230px);
-        line-height: .8;
-
-        font-weight: 900;
-        font-style: italic;
-
-        color: #fff;
-
-        text-shadow:
-            0 0 10px #fff,
-            0 0 35px #888;
-
-        user-select: none;
-    }
-
-    /* =========================
-       BRAND
-    ========================= */
-
-    .brand {
-        position: relative;
-        z-index: 3;
-
-        margin-top: 45px;
-
-        font-size: clamp(32px, 10vw, 58px);
-
-        font-weight: 900;
-        letter-spacing: 7px;
-    }
-
-    .brand span {
-        color: #777;
-    }
-
-    /* =========================
-       TAGLINE
-    ========================= */
-
-    .tagline {
-        position: relative;
-        z-index: 3;
-
-        margin-top: 12px;
-
-        color: #aaa;
-
-        font-size: 15px;
-        letter-spacing: 2px;
-
-        max-width: 500px;
-
-        line-height: 1.6;
-    }
-
-    /* =========================
-       BUTTONS
-    ========================= */
-
-    .buttons {
-        position: relative;
-        z-index: 3;
-
-        display: flex;
-
-        gap: 12px;
-
-        margin-top: 30px;
-
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    button,
-    .button {
-        border: 1px solid #fff;
-
-        background: #fff;
-        color: #000;
-
-        padding: 13px 22px;
-
-        border-radius: 999px;
-
-        font-weight: 800;
-
-        text-decoration: none;
-
-        cursor: pointer;
-
-        transition:
-            .2s ease;
-    }
-
-    button:hover,
-    .button:hover {
-        background: #000;
-        color: #fff;
-
-        transform: translateY(-2px);
-    }
-
-    .button.dark {
-        background: #111;
-        color: #fff;
-    }
-
-    .button.dark:hover {
-        background: #fff;
-        color: #000;
-    }
-
-    /* =========================
-       DISCORD BUTTON
-    ========================= */
-
-    .discord-btn {
-        display: inline-flex;
-
-        align-items: center;
-        justify-content: center;
-
-        gap: 7px;
-
-        border: 1px solid #5865F2;
-
-        background: #5865F2;
-        color: #fff;
-
-        padding: 8px 18px;
-
-        border-radius: 999px;
-
-        font-size: 12px;
-        font-weight: 800;
-
-        text-decoration: none;
-
-        cursor: pointer;
-
-        transition: .2s ease;
-
-        letter-spacing: .5px;
-    }
-
-    .buttons .discord-btn {
-        padding: 13px 22px;
-        font-size: 14px;
-    }
-
-    .discord-btn:hover {
-        background: #4752c4;
-        border-color: #4752c4;
-
-        transform: translateY(-2px);
-    }
-
-    /* =========================
-       SECTIONS
-    ========================= */
-
-    .section {
-        position: relative;
-
-        z-index: 2;
-
-        max-width: 1050px;
-
-        margin: auto;
-
-        padding: 80px 20px;
-    }
-
-    .section-title {
-        font-size: 30px;
-
-        margin-bottom: 10px;
-    }
-
-    .section-subtitle {
-        color: #888;
-
-        margin-bottom: 30px;
-
-        line-height: 1.6;
-    }
-
-    /* =========================
-       CARDS
-    ========================= */
-
-    .cards {
-        display: grid;
-
-        grid-template-columns:
-            repeat(
-                auto-fit,
-                minmax(220px, 1fr)
-            );
-
-        gap: 15px;
-    }
-
-    .card {
-        background: #080808;
-
-        border: 1px solid #292929;
-
-        border-radius: 20px;
-
-        padding: 0;
-
-        transition: .2s ease;
-
-        overflow: hidden;
-    }
-
-    .card:hover {
-        border-color: #aaa;
-
-        transform: translateY(-4px);
-    }
-
-    .card-thumb {
-        width: 100%;
-
-        aspect-ratio: 16 / 9;
-
-        object-fit: cover;
-
-        display: block;
-
-        background: #111;
-    }
-
-    .card-thumb-placeholder {
-        width: 100%;
-
-        aspect-ratio: 16 / 9;
-
-        background: #111;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        font-size: 36px;
-
-        color: #333;
-    }
-
-    .card-body {
-        padding: 18px 20px 20px;
-    }
-
-    .card-body h3 {
-        margin-bottom: 6px;
-
-        font-size: 15px;
-    }
-
-    .card-body p {
-        color: #888;
-
-        line-height: 1.5;
-
-        font-size: 13px;
-
-        margin-bottom: 14px;
-    }
-
-    /* =========================
-       ICON
-    ========================= */
-
-    .icon {
-        width: 45px;
-        height: 45px;
-
-        border: 1px solid #555;
-
-        border-radius: 50%;
-
-        display: grid;
-        place-items: center;
-
-        font-weight: 900;
-
-        margin-bottom: 14px;
-
-        font-size: 18px;
-    }
-
-    /* =========================
-       SCRIPT BOX
-    ========================= */
-
-    .script-box {
-        background: #0d0d0d;
-
-        border: 1px solid #2a2a2a;
-
-        border-radius: 16px;
-
-        padding: 20px 22px;
-
-        margin: 0 0 30px;
-    }
-
-    .script-box-label {
-        font-size: 11px;
-
-        letter-spacing: 2px;
-
-        color: #555;
-
-        text-transform: uppercase;
-
-        margin-bottom: 10px;
-    }
-
-    .script-text {
-        font-family:
-            "Courier New",
-            monospace;
-
-        font-size: 13px;
-
-        color: #ccc;
-
-        word-break: break-all;
-
-        line-height: 1.6;
-
-        margin-bottom: 14px;
-
-        user-select: all;
-    }
-
-    .script-actions {
-        display: flex;
-
-        gap: 10px;
-
-        flex-wrap: wrap;
-    }
-
-    /* =========================
-       COPY BUTTON
-    ========================= */
-
-    .copy-btn {
-        border: 1px solid #444;
-
-        background: #fff;
-        color: #000;
-
-        padding: 8px 18px;
-
-        border-radius: 999px;
-
-        font-size: 12px;
-
-        font-weight: 800;
-
-        cursor: pointer;
-
-        transition: .2s;
-
-        letter-spacing: .5px;
-    }
-
-    .copy-btn:hover {
-        background: #ccc;
-    }
-
-    .copy-btn.copied {
-        background: #1a1a1a;
-
-        color: #aaa;
-
-        border-color: #333;
-    }
-
-    /* =========================
-       STATS
-    ========================= */
-
-    .stats {
-        display: grid;
-
-        grid-template-columns:
-            repeat(3, 1fr);
-
-        gap: 12px;
-
-        margin-top: 18px;
-    }
-
-    .stat {
-        background: #070707;
-
-        border: 1px solid #222;
-
-        border-radius: 16px;
-
-        padding: 18px;
-
-        text-align: center;
-    }
-
-    .stat strong {
-        display: block;
-
-        font-size: 25px;
-    }
-
-    .stat small {
-        color: #777;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-        position: relative;
-
-        z-index: 2;
-
-        text-align: center;
-
-        padding: 40px 20px;
-
-        border-top: 1px solid #171717;
-
-        color: #666;
-
-        font-size: 13px;
-    }
-
-    /* =========================
-       ANIMATION
-    ========================= */
-
-    @keyframes float {
-
-        0%,
-        100% {
-            transform:
-                translateY(0)
-                scale(1);
-        }
-
-        50% {
-            transform:
-                translateY(-12px)
-                scale(1.03);
-        }
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 520px) {
-
-        .stats {
-            grid-template-columns: 1fr;
-        }
-
-        .brand {
-            letter-spacing: 4px;
-        }
-
-        .tagline {
-            font-size: 13px;
-        }
-
-        .buttons {
-            width: 100%;
-        }
-
-        .button,
-        .buttons .discord-btn {
-            width: 100%;
-            max-width: 280px;
-        }
-
-        .section {
-            padding:
-                60px 15px;
-        }
-    }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#000;--text:#f0f0f0;--muted:#555;--border:#1c1c1c}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:#000;color:var(--text);font-family:Syne,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#space-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 44px;background:rgba(0,0,0,.6);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:800;letter-spacing:5px;color:#fff;text-decoration:none}
+.nav-logo-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{color:#555;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:.2s}
+.nav-links a:hover{color:#fff}
+.nav-discord,.btn-discord{background:#fff;color:#000}
+.nav-discord{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.5px;text-decoration:none;transition:.2s}
+.nav-discord:hover{background:#ddd;transform:translateY(-1px)}
+.hero{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 20px 100px;text-align:center}
+.hero-logo{width:120px;height:120px;margin-bottom:36px;filter:drop-shadow(0 0 40px rgba(255,255,255,.3));animation:logo-pulse 4s ease-in-out infinite}
+@keyframes logo-pulse{0%,100%{filter:drop-shadow(0 0 30px rgba(255,255,255,.2))}50%{filter:drop-shadow(0 0 60px rgba(255,255,255,.4))}}
+.hero-eyebrow,.section-eyebrow{display:inline-flex;align-items:center;gap:10px;color:#555;font:10px JetBrains Mono,monospace;letter-spacing:4px}
+.hero-eyebrow{margin-bottom:20px}
+.hero-eyebrow span,.section-eyebrow:before,.section-eyebrow:after{width:20px;height:1px;background:#555;display:inline-block;content:""}
+.hero-title{font-size:clamp(36px,8vw,80px);font-weight:800;letter-spacing:12px;color:#fff;line-height:1}
+.hero-title .dim{color:rgba(255,255,255,.25)}
+.hero-sub{margin-top:20px;color:#555;font:13px/1.9 JetBrains Mono,monospace;letter-spacing:.5px;max-width:420px}
+.hero-divider{width:1px;height:40px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.2),transparent);margin:36px auto}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 28px;border-radius:6px;font:700 12px Syne,sans-serif;letter-spacing:2px;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-white{background:#fff;color:#000}.btn-white:hover{background:#e8e8e8}
+.btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.15)}.btn-outline:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.3)}
+.btn-discord{background:#fff;color:#000}.btn-discord:hover{background:#ddd}
+.scroll-hint{margin-top:60px;display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.15);font:9px JetBrains Mono,monospace;letter-spacing:3px;animation:hint 3s ease-in-out infinite}
+.scroll-line{width:1px;height:36px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.2))}
+@keyframes hint{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1}}
+.rule{position:relative;z-index:2;height:1px;background:rgba(255,255,255,.06)}
+.section{position:relative;z-index:2;max-width:1080px;margin:auto;padding:100px 28px}
+.section-eyebrow{margin-bottom:20px}
+.section-eyebrow:before,.section-eyebrow:after{width:14px}
+.section-h{font-size:clamp(22px,3.5vw,36px);font-weight:800;line-height:1.1;margin-bottom:12px}
+.section-p{color:#555;font:13px/1.8 JetBrains Mono,monospace;max-width:520px}
+.feat-grid,.game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);overflow:hidden}
+.feat-grid{margin-top:52px}
+.feat-card{background:#000;padding:40px 34px;transition:.2s}
+.feat-card:hover,.game-card:hover,.stat:hover{background:#060606}
+.feat-icon{width:42px;height:42px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;margin-bottom:26px}
+.feat-icon img{width:18px;height:18px;filter:invert(1);opacity:.7}
+.feat-card h3,.game-body h3{font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.feat-card h3{margin-bottom:12px}
+.feat-card p,.game-body p{font:12px/1.8 JetBrains Mono,monospace;color:#555}
+.script-wrap{background:#000;border:1px solid rgba(255,255,255,.1);margin:52px 0;position:relative;overflow:hidden}
+.script-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.06)}
+.script-dots{display:flex;gap:6px}.script-dots span{width:10px;height:10px;border-radius:50%;background:#fff}.script-dots span:nth-child(2){opacity:.6}.script-dots span:nth-child(3){opacity:.3}
+.script-file{font:10px JetBrains Mono,monospace;color:#555;letter-spacing:2px}
+.script-body{padding:28px 24px}
+.script-code{font:13px/1.8 JetBrains Mono,monospace;color:rgba(255,255,255,.7);word-break:break-all;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:18px 20px;margin-bottom:20px;user-select:all}
+.script-actions{display:flex;gap:10px;flex-wrap:wrap}
+.copy-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;padding:11px 22px;font:800 11px Syne,sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:0;transition:.2s}
+.copy-btn:hover{background:#ddd;transform:translateY(-1px)}
+.copy-btn.copied{background:#111;color:#777;border:1px solid #222}
+.game-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.game-card{background:#000;display:flex;flex-direction:column;transition:.2s}
+.game-thumb,.game-ph{width:100%;aspect-ratio:16/9}
+.game-thumb{object-fit:cover;display:block;background:#0e0e0e;filter:brightness(.85)}
+.game-ph{background:#060606;display:none;align-items:center;justify-content:center}
+.game-ph img{width:28px;height:28px;filter:invert(1);opacity:.1}
+.game-body{padding:18px 20px 22px;flex:1;display:flex;flex-direction:column}
+.game-body h3{margin-bottom:8px}
+.game-body p{flex:1;margin-bottom:14px;font-size:11px}
+.game-tag{display:inline-flex;align-items:center;gap:6px;font:9px JetBrains Mono,monospace;letter-spacing:2px;color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.08);padding:4px 10px;width:max-content;text-transform:uppercase}
+.game-tag img{width:9px;height:9px;filter:invert(1);opacity:.4}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);margin-top:1px}
+.stat{background:#000;padding:32px 20px;text-align:center;transition:.2s}
+.stat-val{display:block;font-size:30px;font-weight:800;line-height:1;margin-bottom:8px}
+.stat-label{font:9px JetBrains Mono,monospace;color:#555;letter-spacing:3px;text-transform:uppercase}
+.footer-wrap{position:relative;z-index:2}
+footer{max-width:1080px;margin:auto;padding:40px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid rgba(255,255,255,.06)}
+footer p,.foot-links a{font:10px JetBrains Mono,monospace;color:#555;letter-spacing:2px;text-transform:uppercase}
+.foot-links{display:flex;gap:28px}.foot-links a{text-decoration:none;transition:.2s}.foot-links a:hover{color:#fff}
+@media(max-width:640px){nav{padding:14px 20px}.nav-links{display:none}.section{padding:72px 20px}.stats-row{grid-template-columns:1fr}footer{flex-direction:column;align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-
 <body>
+<canvas id="space-canvas"></canvas>
 
-<!-- =========================
-     HERO
-========================= -->
+<nav>
+<a class="nav-logo" href="#"><div class="nav-logo-icon">
+<svg width="32" height="32" viewBox="0 0 100 100" fill="none"><polygon points="50,88 4,16 18,16 50,68 82,16 96,16" fill="white"/><polygon points="50,65 20,16 34,16 50,42 66,16 80,16" fill="black"/><polygon points="50,50 30,16 44,16 50,28 56,16 70,16" fill="white"/><polygon points="50,28 38,16 62,16" fill="black"/></svg>
+</div>VIRPRIX<span style="color:#444;margin-left:6px">HUB</span></a>
+<ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#scripts">Scripts</a></li><li><a class="nav-discord" href="https://discord.gg/ZfSnnpy8a" target="_blank" rel="noopener">Discord</a></li></ul>
+</nav>
 
 <section class="hero">
-
-    <div class="black-hole"></div>
-
-    <div class="v">V</div>
-
-    <h1 class="brand">
-        VIRPRIX<span> HUB</span>
-    </h1>
-
-    <p class="tagline">
-        Free Roblox scripts. Many games supported. One hub.
-    </p>
-
-    <div class="buttons">
-
-        <a
-            class="button"
-            href="#scripts"
-        >
-            Get Scripts
-        </a>
-
-        <a
-            class="button dark"
-            href="#about"
-        >
-            About VirpriX
-        </a>
-
-        <a
-            class="discord-btn"
-            href="https://discord.gg/ZfSnnpy8a"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-            >
-                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.053a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
-            </svg>
-
-            Join Discord
-        </a>
-
-    </div>
-
+<div class="hero-logo"><svg viewBox="0 0 200 200" fill="none" width="120" height="120"><polygon points="100,178 8,30 28,30 100,152 172,30 192,30" fill="white"/><polygon points="100,148 32,30 52,30 100,122 148,30 168,30" fill="black"/><polygon points="100,122 46,30 66,30 100,88 134,30 154,30" fill="white"/><polygon points="100,88 62,30 82,30 100,58 118,30 138,30" fill="black"/><polygon points="100,58 76,30 96,30 100,38 104,30 124,30" fill="white"/></svg></div>
+<div class="hero-eyebrow"><span></span>FREE · NO KEY · NO PAYWALL<span></span></div>
+<h1 class="hero-title">VIRPRIX<span class="dim"> HUB</span></h1>
+<p class="hero-sub">Free Roblox scripts for the most popular games.<br>No key system. No paywalls.</p>
+<div class="hero-divider"></div>
+<div class="hero-btns"><a class="btn btn-white" href="#scripts">Get Scripts</a><a class="btn btn-outline" href="#about">About</a><a class="btn btn-discord" href="https://discord.gg/ZfSnnpy8a" target="_blank" rel="noopener">Join Discord</a></div>
+<div class="scroll-hint"><div class="scroll-line"></div><span>SCROLL</span></div>
 </section>
 
+<div class="rule"></div>
 
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section
-    class="section"
-    id="about"
->
-
-    <h2 class="section-title">
-        What is VirpriX?
-    </h2>
-
-    <p class="section-subtitle">
-        A free Roblox script hub — no key system,
-        no paywalls. Just scripts that work.
-    </p>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <div class="card-body">
-
-                <div class="icon">
-                    V
-                </div>
-
-                <h3>
-                    VirpriX Hub
-                </h3>
-
-                <p>
-                    A constantly updated script hub
-                    built for the Roblox community.
-                    Free forever — no subscriptions,
-                    no keys.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-body">
-
-                <div class="icon">
-                    🎮
-                </div>
-
-                <h3>
-                    Many Games Supported
-                </h3>
-
-                <p>
-                    Scripts for popular Roblox titles.
-                    Rivals, MM2, Slap Battles,
-                    and more added regularly.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-body">
-
-                <div class="icon">
-                    ∞
-                </div>
-
-                <h3>
-                    Always Free
-                </h3>
-
-                <p>
-                    No key system. No survey.
-                    No Discord requirement.
-                    Copy the script, paste it,
-                    run it. That's it.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
+<section class="section" id="about">
+<div class="section-eyebrow">About</div><h2 class="section-h">What is VirpriX?</h2><p class="section-p">A free Roblox script hub — no key system, no paywalls, no surveys. Built for the community.</p>
+<div class="feat-grid">
+<div class="feat-card"><div class="feat-icon">01</div><h3>VirpriX Hub</h3><p>Constantly updated script hub built for the Roblox community. Free forever — no subscriptions, no keys.</p></div>
+<div class="feat-card"><div class="feat-icon">02</div><h3>Many Games</h3><p>Scripts for popular Roblox titles. New supported games can be added regularly.</p></div>
+<div class="feat-card"><div class="feat-icon">03</div><h3>Always Free</h3><p>No key system. No survey. No Discord requirement. Copy the script, paste it, run it.</p></div>
+</div>
 </section>
 
-
-<!-- =========================
-     SCRIPTS
-========================= -->
-
-<section
-    class="section"
-    id="scripts"
->
-
-    <h2 class="section-title">
-        Supported Games
-    </h2>
-
-    <p class="section-subtitle">
-        Scripts updated regularly.
-        Paste into any supported executor.
-    </p>
-
-
-    <!-- Main Script -->
-
-    <div class="script-box">
-
-        <div class="script-box-label">
-            Main Script
-        </div>
-
-        <div
-            class="script-text"
-            id="main-script"
-        >loadstring(game:HttpGet("https://obfuscatorhub.vercel.app/api/FH7GgW0r"))()</div>
-
-        <div class="script-actions">
-
-            <button
-                class="copy-btn"
-                id="copy-btn"
-                onclick="copyScript()"
-            >
-                Copy Script
-            </button>
-
-            <a
-                class="discord-btn"
-                href="https://discord.gg/ZfSnnpy8a"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-
-                <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                >
-                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.053a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
-                </svg>
-
-                Join Discord
-
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         GAME CARDS
-    ========================= -->
-
-    <div
-        class="cards"
-        id="game-cards"
-    >
-
-
-        <!-- Rivals -->
-
-        <div class="card">
-
-            <img
-                class="card-thumb"
-                src="https://tr.rbxcdn.com/180DAY-7e0949d0b3a4e2a9fde6bbbd25f24001/768/432/Image/Webp/noFilter"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                alt="Rivals thumbnail"
-            >
-
-            <div
-                class="card-thumb-placeholder"
-                style="display:none;"
-            >
-                🎮
-            </div>
-
-            <div class="card-body">
-
-                <h3>
-                    Rivals
-                </h3>
-
-                <p>
-                    1v1 to 5v5 FPS duels.
-                    First to 5 wins.
-                    Auto-aim, ESP, and silent aim supported.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- Steal an Egg -->
-
-        <div class="card">
-
-            <img
-                class="card-thumb"
-                src="https://tr.rbxcdn.com/180DAY-5e2c5b3e4f1a9b8c2d7e6f3a1b4c8d2e/768/432/Image/Webp/noFilter"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                alt="Steal an Egg thumbnail"
-            >
-
-            <div
-                class="card-thumb-placeholder"
-                style="display:none;"
-            >
-                🥚
-            </div>
-
-            <div class="card-body">
-
-                <h3>
-                    Steal an Egg
-                </h3>
-
-                <p>
-                    Auto-steal, egg ESP,
-                    and speed boost.
-                    Farm eggs while AFK.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- MM2 -->
-
-        <div class="card">
-
-            <img
-                class="card-thumb"
-                src="https://tr.rbxcdn.com/180DAY-c3e4f5a6b7d8e9f0a1b2c3d4e5f6a7b8/768/432/Image/Webp/noFilter"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                alt="Murder Mystery 2 thumbnail"
-            >
-
-            <div
-                class="card-thumb-placeholder"
-                style="display:none;"
-            >
-                🔪
-            </div>
-
-            <div class="card-body">
-
-                <h3>
-                    MM2
-                </h3>
-
-                <p>
-                    Murderer ESP, gun snapper,
-                    and auto-collect coins.
-                    See everyone through walls.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- Flick -->
-
-        <div class="card">
-
-            <img
-                class="card-thumb"
-                src="https://tr.rbxcdn.com/180DAY-a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6/768/432/Image/Webp/noFilter"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                alt="Flick thumbnail"
-            >
-
-            <div
-                class="card-thumb-placeholder"
-                style="display:none;"
-            >
-                👆
-            </div>
-
-            <div class="card-body">
-
-                <h3>
-                    Flick
-                </h3>
-
-                <p>
-                    Auto-flick, instant win assist,
-                    and hitbox expander.
-                    Dominate every round.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- Slap Battles -->
-
-        <div class="card">
-
-            <img
-                class="card-thumb"
-                src="https://tr.rbxcdn.com/180DAY-f1e2d3c4b5a6978869504132241f1e2d/768/432/Image/Webp/noFilter"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                alt="Slap Battles thumbnail"
-            >
-
-            <div
-                class="card-thumb-placeholder"
-                style="display:none;"
-            >
-                👋
-            </div>
-
-            <div class="card-body">
-
-                <h3>
-                    Slap Battles
-                </h3>
-
-                <p>
-                    Infinite slap range,
-                    auto-slap, knockback multiplier,
-                    and badge farmer.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- Upcoming -->
-
-        <div class="card">
-
-            <div
-                class="card-thumb-placeholder"
-                style="
-                    display:flex;
-                    background:#0a0a0a;
-                "
-            >
-                ⏳
-            </div>
-
-            <div class="card-body">
-
-                <h3>
-                    More Upcoming
-                </h3>
-
-                <p>
-                    New game scripts drop regularly.
-                    Stay tuned — more supported games
-                    coming soon.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         STATS
-    ========================= -->
-
-    <div class="stats">
-
-        <div class="stat">
-
-            <strong>
-                FREE
-            </strong>
-
-            <small>
-                Always &amp; Forever
-            </small>
-
-        </div>
-
-
-        <div class="stat">
-
-            <strong>
-                5+
-            </strong>
-
-            <small>
-                Games Supported
-            </small>
-
-        </div>
-
-
-        <div class="stat">
-
-            <strong>
-                ∞
-            </strong>
-
-            <small>
-                No Key System
-            </small>
-
-        </div>
-
-    </div>
-
+<div class="rule"></div>
+
+<section class="section" id="scripts">
+<div class="section-eyebrow">Scripts</div><h2 class="section-h">Supported Games</h2><p class="section-p">Scripts updated regularly. Paste into your supported executor and run.</p>
+<div class="script-wrap">
+<div class="script-bar"><div class="script-dots"><span></span><span></span><span></span></div><span class="script-file">main_script.lua</span><span class="script-file">LOADSTRING</span></div>
+<div class="script-body"><div class="script-code" id="main-script">loadstring(game:HttpGet("https://obfuscatorhub.vercel.app/api/FH7GgW0r"))()</div><div class="script-actions"><button class="copy-btn" id="copy-btn" onclick="copyScript()">Copy Script</button><a class="btn btn-discord" href="https://discord.gg/ZfSnnpy8a" target="_blank" rel="noopener">Join Discord</a></div></div>
+</div>
+
+<div class="game-grid">
+<div class="game-card"><img class="game-thumb" alt="Rivals" data-game="0"><div class="game-ph"><span>GAME</span></div><div class="game-body"><h3>Rivals</h3><p>FPS utility scripts and gameplay tools.</p><span class="game-tag">FPS</span></div></div>
+<div class="game-card"><img class="game-thumb" alt="Steal an Egg" data-game="1"><div class="game-ph"><span>GAME</span></div><div class="game-body"><h3>Steal an Egg</h3><p>Automation and farming utilities.</p><span class="game-tag">AUTO FARM</span></div></div>
+<div class="game-card"><img class="game-thumb" alt="MM2" data-game="2"><div class="game-ph"><span>GAME</span></div><div class="game-body"><h3>MM2</h3><p>Game utilities and collection tools.</p><span class="game-tag">UTILITY</span></div></div>
+<div class="game-card"><img class="game-thumb" alt="Flick" data-game="3"><div class="game-ph"><span>GAME</span></div><div class="game-body"><h3>Flick</h3><p>Gameplay assistance and utilities.</p><span class="game-tag">AIM</span></div></div>
+<div class="game-card"><img class="game-thumb" alt="Slap Battles" data-game="4"><div class="game-ph"><span>GAME</span></div><div class="game-body"><h3>Slap Battles</h3><p>Gameplay and farming utilities.</p><span class="game-tag">FARM</span></div></div>
+<div class="game-card"><div class="game-ph" style="display:flex"><span>+</span></div><div class="game-body"><h3>More Coming</h3><p>New supported games can be added here.</p><span class="game-tag">SOON</span></div></div>
+</div>
+<div class="stats-row"><div class="stat"><span class="stat-val">FREE</span><span class="stat-label">Always &amp; Forever</span></div><div class="stat"><span class="stat-val">5+</span><span class="stat-label">Games Supported</span></div><div class="stat"><span class="stat-val">∞</span><span class="stat-label">No Key System</span></div></div>
 </section>
 
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    © 2026 VirpriX Hub
-    · Free Roblox Scripts
-    · No Key
-    · No Paywall
-
-</footer>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
+<footer><p>© 2026 VirpriX Hub</p><div class="foot-links"><a href="#scripts">Scripts</a><a href="#about">About</a><a href="https://discord.gg/ZfSnnpy8a" target="_blank" rel="noopener">Discord</a></div></footer>
 
 <script>
-
-    /*
-     * Roblox game IDs
-     */
-
-    const games = [
-        {
-            id: "17017769292",
-            idx: 0
-        },
-
-        {
-            id: "108016795637827",
-            idx: 1
-        },
-
-        {
-            id: "142823291",
-            idx: 2
-        },
-
-        {
-            id: "6415469319",
-            idx: 3
-        },
-
-        {
-            id: "6403373529",
-            idx: 4
-        }
-    ];
-
-
-    /*
-     * Game cards
-     */
-
-    const cards =
-        document.querySelectorAll(
-            "#game-cards .card"
-        );
-
-
-    /*
-     * Load Roblox thumbnails
-     */
-
-    games.forEach(
-        ({ id, idx }) => {
-
-            const url =
-                `https://thumbnails.roblox.com/v1/games/icons?universeIds=${id}&returnPolicy=PlaceHolder&size=512x512&format=Webp&isCircular=false`;
-
-            fetch(url)
-
-                .then(response => {
-
-                    if (!response.ok) {
-                        throw new Error(
-                            "Thumbnail request failed"
-                        );
-                    }
-
-                    return response.json();
-                })
-
-                .then(data => {
-
-                    const imgUrl =
-                        data?.data?.[0]?.imageUrl;
-
-                    if (
-                        imgUrl &&
-                        cards[idx]
-                    ) {
-
-                        const img =
-                            cards[idx]
-                                .querySelector(
-                                    ".card-thumb"
-                                );
-
-                        const placeholder =
-                            cards[idx]
-                                .querySelector(
-                                    ".card-thumb-placeholder"
-                                );
-
-                        if (img) {
-
-                            img.src = imgUrl;
-
-                            img.style.display =
-                                "block";
-
-                            if (placeholder) {
-
-                                placeholder.style.display =
-                                    "none";
-
-                            }
-
-                        }
-
-                    }
-
-                })
-
-                .catch(() => {
-
-                    /*
-                     * Keep placeholder if
-                     * thumbnail cannot load.
-                     */
-
-                });
-
-        }
-    );
-
-
-    /*
-     * Smooth anchor scrolling
-     */
-
-    document
-        .querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(link => {
-
-            link.addEventListener(
-                "click",
-                event => {
-
-                    const target =
-                        document.querySelector(
-                            link.getAttribute(
-                                "href"
-                            )
-                        );
-
-                    if (target) {
-
-                        event.preventDefault();
-
-                        target.scrollIntoView({
-                            behavior: "smooth"
-                        });
-
-                    }
-
-                }
-            );
-
-        });
-
-
-    /*
-     * Copy main script
-     */
-
-    function copyScript() {
-
-        const script =
-            document.getElementById(
-                "main-script"
-            );
-
-        const button =
-            document.getElementById(
-                "copy-btn"
-            );
-
-        const text =
-            script.innerText;
-
-
-        /*
-         * Modern clipboard API
-         */
-
-        if (
-            navigator.clipboard &&
-            window.isSecureContext
-        ) {
-
-            navigator.clipboard
-                .writeText(text)
-
-                .then(() => {
-
-                    showCopied(button);
-
-                })
-
-                .catch(() => {
-
-                    fallbackCopy(
-                        text,
-                        button
-                    );
-
-                });
-
-        } else {
-
-            fallbackCopy(
-                text,
-                button
-            );
-
-        }
-
-    }
-
-
-    /*
-     * Fallback copy method
-     */
-
-    function fallbackCopy(
-        text,
-        button
-    ) {
-
-        const textarea =
-            document.createElement(
-                "textarea"
-            );
-
-        textarea.value = text;
-
-        textarea.style.position =
-            "fixed";
-
-        textarea.style.left =
-            "-9999px";
-
-        textarea.style.top =
-            "0";
-
-        document.body.appendChild(
-            textarea
-        );
-
-        textarea.focus();
-        textarea.select();
-
-        try {
-
-            document.execCommand(
-                "copy"
-            );
-
-            showCopied(button);
-
-        } catch (error) {
-
-            button.textContent =
-                "Copy Failed";
-
-        }
-
-        document.body.removeChild(
-            textarea
-        );
-
-    }
-
-
-    /*
-     * Copied animation
-     */
-
-    function showCopied(button) {
-
-        button.textContent =
-            "Copied!";
-
-        button.classList.add(
-            "copied"
-        );
-
-        setTimeout(() => {
-
-            button.textContent =
-                "Copy Script";
-
-            button.classList.remove(
-                "copied"
-            );
-
-        }, 2000);
-
-    }
-
+(function(){
+const c=document.getElementById('space-canvas'),ctx=c.getContext('2d');let W,H,stars=[],time=0;
+function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
+function init(){stars=[];for(let i=0;i<220;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.1,a:Math.random()*.45+.08,p:Math.random()*6.28,s:Math.random()*3+1})}
+function frame(t){time=t;ctx.clearRect(0,0,W,H);let g=ctx.createRadialGradient(W*.5,H*.35,0,W*.5,H*.35,Math.max(W,H)*.65);g.addColorStop(0,'rgba(255,255,255,.025)');g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${s.a*(.45+.55*Math.sin(time*.0008*s.s+s.p))})`;ctx.fill()});requestAnimationFrame(frame)}
+resize();init();addEventListener('resize',()=>{resize();init()});requestAnimationFrame(frame)
+})();
+const gameIds=['17017769292','108016795637827','142823291','6415469319','6403373529'];
+gameIds.forEach((id,i)=>fetch(`https://thumbnails.roblox.com/v1/games/icons?universeIds=${id}&returnPolicy=PlaceHolder&size=512x512&format=Webp&isCircular=false`).then(r=>r.json()).then(d=>{const u=d?.data?.[0]?.imageUrl;if(!u)return;const card=document.querySelectorAll('.game-card')[i],img=card.querySelector('.game-thumb'),ph=card.querySelector('.game-ph');img.src=u;img.style.display='block';ph.style.display='none'}).catch(()=>{}));
+function copyScript(){const text=document.getElementById('main-script').innerText,btn=document.getElementById('copy-btn');const done=()=>{btn.textContent='COPIED';btn.classList.add('copied');setTimeout(()=>{btn.textContent='COPY SCRIPT';btn.classList.remove('copied')},2000)};navigator.clipboard?.writeText(text).then(done).catch(()=>{const t=document.createElement('textarea');t.value=text;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();done()})}
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}));
 </script>
-
 </body>
 </html>
