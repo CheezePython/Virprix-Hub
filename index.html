@@ -252,13 +252,22 @@ nav{
   transition:background .2s;position:relative;overflow:hidden;
 }
 .game-card:hover{background:#050505}
-.game-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--c2);filter:brightness(.85)}
+.game-media{position:relative;width:100%}
+.game-thumb,.game-banner{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--c2);filter:brightness(.85)}
+.game-icon{
+  position:absolute;left:16px;bottom:-28px;z-index:3;
+  width:58px;height:58px;border-radius:14px;
+  border:4px solid #000;background:#0e0e0e;
+  object-fit:cover;box-shadow:0 8px 20px rgba(0,0,0,.65);
+  transition:opacity .25s ease;opacity:0;
+}
+.game-icon.loaded{opacity:1}
 .game-ph{
   width:100%;aspect-ratio:16/9;background:#060606;
   display:flex;align-items:center;justify-content:center;
 }
 .game-ph img{width:28px;height:28px;filter:invert(1);opacity:.1}
-.game-body{padding:18px 20px 22px;flex:1;display:flex;flex-direction:column}
+.game-body{padding:40px 20px 22px;flex:1;display:flex;flex-direction:column}
 .game-body h3{
   font-size:13px;font-weight:700;
   letter-spacing:1px;text-transform:uppercase;
@@ -466,7 +475,10 @@ footer p{
   <!-- Game Cards + Stats merged -->
   <div class="game-grid" id="game-cards">
     <div class="game-card">
-      <img class="game-thumb" src="https://i.postimg.cc/64LvKVLV/no-Filter-(1).webp" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Rivals" data-game="0">
+      <div class="game-media">
+        <img class="game-banner" data-universe="rivals" src="https://i.postimg.cc/64LvKVLV/no-Filter-(1).webp" onerror="this.parentElement.style.display='none';this.parentElement.nextElementSibling.style.display='flex'" alt="Rivals" data-game="0">
+        <img class="game-icon" data-universe="rivals" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onerror="this.style.opacity='0'" alt="">
+      </div>
       <div class="game-ph" style="display:none"><img src="https://lucide.dev/icons/gamepad-2" alt=""></div>
       <div class="game-body">
         <h3>Rivals</h3>
@@ -475,7 +487,10 @@ footer p{
       </div>
     </div>
     <div class="game-card">
-      <img class="game-thumb" src="https://i.postimg.cc/GTJyRPJJ/no-Filter-(10).webp" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Steal an Egg" data-game="1">
+      <div class="game-media">
+        <img class="game-banner" data-universe="eggs" src="https://i.postimg.cc/GTJyRPJJ/no-Filter-(10).webp" onerror="this.parentElement.style.display='none';this.parentElement.nextElementSibling.style.display='flex'" alt="Steal an Egg" data-game="1">
+        <img class="game-icon" data-universe="eggs" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onerror="this.style.opacity='0'" alt="">
+      </div>
       <div class="game-ph" style="display:none"><img src="https://lucide.dev/icons/gamepad-2" alt=""></div>
       <div class="game-body">
         <h3>Steal an Egg</h3>
@@ -484,7 +499,10 @@ footer p{
       </div>
     </div>
     <div class="game-card">
-      <img class="game-thumb" src="https://i.postimg.cc/rRCrTGC1/no-Filter-(11).webp" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MM2" data-game="2">
+      <div class="game-media">
+        <img class="game-banner" data-universe="mm2" src="https://i.postimg.cc/rRCrTGC1/no-Filter-(11).webp" onerror="this.parentElement.style.display='none';this.parentElement.nextElementSibling.style.display='flex'" alt="MM2" data-game="2">
+        <img class="game-icon" data-universe="mm2" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onerror="this.style.opacity='0'" alt="">
+      </div>
       <div class="game-ph" style="display:none"><img src="https://lucide.dev/icons/gamepad-2" alt=""></div>
       <div class="game-body">
         <h3>MM2</h3>
@@ -493,7 +511,10 @@ footer p{
       </div>
     </div>
     <div class="game-card">
-      <img class="game-thumb" src="https://i.postimg.cc/tntxbdth/no-Filter-(12).webp" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Flick" data-game="3">
+      <div class="game-media">
+        <img class="game-banner" data-universe="flick" src="https://i.postimg.cc/tntxbdth/no-Filter-(12).webp" onerror="this.parentElement.style.display='none';this.parentElement.nextElementSibling.style.display='flex'" alt="Flick" data-game="3">
+        <img class="game-icon" data-universe="flick" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onerror="this.style.opacity='0'" alt="">
+      </div>
       <div class="game-ph" style="display:none"><img src="https://lucide.dev/icons/gamepad-2" alt=""></div>
       <div class="game-body">
         <h3>Flick</h3>
@@ -502,7 +523,10 @@ footer p{
       </div>
     </div>
     <div class="game-card">
-      <img class="game-thumb" src="https://i.postimg.cc/sG9hzP9h/no-Filter-(13).webp" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Slap Battles" data-game="4">
+      <div class="game-media">
+        <img class="game-banner" data-universe="slap" src="https://i.postimg.cc/sG9hzP9h/no-Filter-(13).webp" onerror="this.parentElement.style.display='none';this.parentElement.nextElementSibling.style.display='flex'" alt="Slap Battles" data-game="4">
+        <img class="game-icon" data-universe="slap" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onerror="this.style.opacity='0'" alt="">
+      </div>
       <div class="game-ph" style="display:none"><img src="https://lucide.dev/icons/gamepad-2" alt=""></div>
       <div class="game-body">
         <h3>Slap Battles</h3>
@@ -511,7 +535,9 @@ footer p{
       </div>
     </div>
     <div class="game-card" style="border:1px dashed rgba(255,255,255,0.06)">
-      <img class="game-thumb" src="https://i.postimg.cc/FKfSxjQP/roblox-banner.jpg" alt="More Coming">
+      <div class="game-media">
+        <img class="game-banner" src="https://i.postimg.cc/FKfSxjQP/roblox-banner.jpg" alt="More Coming">
+      </div>
       <div class="game-body">
         <h3>More Coming</h3>
         <p>New scripts drop regularly. More supported games coming soon.</p>
@@ -541,6 +567,48 @@ footer p{
 </div>
 
 <script>
+// ── ROBLOX GAME BANNERS/ICONS ──
+(function(){
+  const UNIVERSE_IDS = {
+    rivals: 6035872082,
+    eggs:   10563114921,
+    mm2:    66654135,
+    flick:  8795154789,
+    slap:   2380077519
+  };
+
+  async function getImageUrl(apiUrl){
+    const res = await fetch(apiUrl);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const json = await res.json();
+    return json?.data?.[0]?.thumbnails?.[0]?.imageUrl || json?.data?.[0]?.imageUrl || null;
+  }
+
+  function setSrc(key, className, url){
+    if(!url) return;
+    document.querySelectorAll(`.${className}[data-universe="${key}"]`).forEach(el=>{
+      el.src = url;
+      if(className === 'game-icon') el.classList.add('loaded');
+    });
+  }
+
+  async function loadGameMedia(){
+    await Promise.all(Object.entries(UNIVERSE_IDS).map(async ([key, id]) => {
+      const iconApi   = `https://thumbnails.roblox.com/v1/games/icons?universeIds=${id}&size=512x512&format=Png&isCircular=false`;
+      const bannerApi = `https://thumbnails.roblox.com/v1/games/multiget/thumbnails?universeIds=${id}&size=768x432&format=Png`;
+      try{
+        const [icon, banner] = await Promise.all([getImageUrl(iconApi), getImageUrl(bannerApi)]);
+        setSrc(key, 'game-icon', icon);
+        setSrc(key, 'game-banner', banner);
+      }catch(err){
+        console.error('Roblox thumb fetch failed for', key, err);
+      }
+    }));
+  }
+
+  document.addEventListener('DOMContentLoaded', loadGameMedia);
+})();
+
 // ── SPACE CANVAS ──
 (function(){
   const c=document.getElementById('space-canvas');
