@@ -229,6 +229,20 @@ nav{
   padding:18px 20px;margin-bottom:20px;user-select:all;
 }
 .script-actions{display:flex;gap:10px;flex-wrap:wrap}
+/* ── SCRIPT TABS ── */
+.script-tabs{display:flex;gap:2px}
+.script-tab{
+  background:transparent;border:none;cursor:pointer;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);
+  padding:6px 14px;
+  border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s;
+}
+.script-tab:hover{color:var(--acc2)}
+.script-tab.active{color:#fff;border-bottom:2px solid #fff}
+
 .copy-btn{
   display:inline-flex;align-items:center;gap:8px;
   background:#fff;color:#000;
@@ -313,6 +327,23 @@ nav{
 }
 .game-tag img{width:9px;height:9px;filter:invert(1);opacity:.4}
 
+/* ── FEATURE CHIPS (bigger, highlighted) ── */
+.game-feats{display:flex;flex-wrap:wrap;gap:7px}
+.game-feat{
+  display:inline-flex;align-items:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;color:#fff;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.2);
+  padding:7px 12px;border-radius:3px;line-height:1.2;
+  transition:border-color .2s ease,background .2s ease;
+}
+.game-card:hover .game-feat{
+  border-color:rgba(255,255,255,0.36);
+  background:rgba(255,255,255,0.09);
+}
+
 /* ── STATS ── */
 .stats-row{
   display:grid;grid-template-columns:repeat(3,1fr);
@@ -370,6 +401,139 @@ footer p{
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
 }
+
+/* ── ENTRANCE ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(32px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes slideInLeft{
+  from{opacity:0;transform:translateX(-28px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@keyframes slideInRight{
+  from{opacity:0;transform:translateX(28px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@keyframes scaleUp{
+  from{opacity:0;transform:scale(0.92)}
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes popIn{
+  0%{opacity:0;transform:scale(0.85) translateY(12px)}
+  70%{transform:scale(1.03) translateY(-2px)}
+  100%{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* Hero entrance */
+.hero-logo{animation:logo-pulse 4s ease-in-out infinite,scaleUp .8s cubic-bezier(.16,1,.3,1) both}
+.hero-eyebrow{animation:fadeUp .7s .1s cubic-bezier(.16,1,.3,1) both}
+.hero-title{animation:fadeUp .8s .2s cubic-bezier(.16,1,.3,1) both}
+.hero-sub{animation:fadeUp .8s .35s cubic-bezier(.16,1,.3,1) both}
+.hero-divider{animation:fadeIn .6s .5s both}
+.hero-btns{animation:fadeUp .7s .55s cubic-bezier(.16,1,.3,1) both}
+.scroll-hint{animation:hint-float 3s ease-in-out infinite, fadeIn .8s .9s both}
+
+/* Nav entrance */
+nav{animation:fadeIn .6s .05s cubic-bezier(.16,1,.3,1) both}
+
+/* Section headings */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Feature cards stagger */
+.feat-card{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1), background .2s;
+}
+.feat-card.visible{opacity:1;transform:translateY(0)}
+.feat-card:nth-child(1){transition-delay:.05s}
+.feat-card:nth-child(2){transition-delay:.15s}
+.feat-card:nth-child(3){transition-delay:.25s}
+
+/* Game cards stagger */
+.game-card{
+  opacity:0;
+  transform:translateY(20px) scale(0.98);
+  transition:opacity .55s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1), background .2s;
+}
+.game-card.visible{opacity:1;transform:translateY(0) scale(1)}
+.game-card:nth-child(1){transition-delay:.04s}
+.game-card:nth-child(2){transition-delay:.1s}
+.game-card:nth-child(3){transition-delay:.16s}
+.game-card:nth-child(4){transition-delay:.22s}
+.game-card:nth-child(5){transition-delay:.28s}
+.game-card:nth-child(6){transition-delay:.34s}
+.game-card:nth-child(7){transition-delay:.4s}
+.game-card:nth-child(8){transition-delay:.46s}
+
+/* Script box entrance */
+.script-wrap{
+  opacity:0;transform:translateY(18px);
+  transition:opacity .65s .1s cubic-bezier(.16,1,.3,1), transform .65s .1s cubic-bezier(.16,1,.3,1);
+}
+.script-wrap.visible{opacity:1;transform:translateY(0)}
+
+/* Stats entrance */
+.stat{
+  opacity:0;transform:translateY(16px);
+  transition:opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1), background .2s;
+}
+.stat.visible{opacity:1;transform:translateY(0)}
+.stat:nth-child(1){transition-delay:.05s}
+.stat:nth-child(2){transition-delay:.15s}
+.stat:nth-child(3){transition-delay:.25s}
+
+/* Rule line wipe */
+.rule{
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .8s cubic-bezier(.16,1,.3,1);
+}
+.rule.visible{transform:scaleX(1)}
+
+/* Feature chip pop on game card hover */
+.game-card:hover .game-feat{
+  animation:none;
+}
+.game-feat{transition:border-color .2s ease,background .2s ease,transform .15s ease}
+.game-card:hover .game-feat:hover{transform:translateY(-2px);background:rgba(255,255,255,0.13);border-color:rgba(255,255,255,0.45)}
+
+/* Friendlier hover on nav links */
+.nav-links a{position:relative}
+.nav-links a::after{
+  content:"";position:absolute;bottom:-3px;left:0;right:0;height:1px;
+  background:#fff;transform:scaleX(0);transform-origin:left;
+  transition:transform .25s cubic-bezier(.16,1,.3,1);
+}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+/* Section eyebrow pop */
+.section-eyebrow{
+  opacity:0;transform:translateX(-10px);
+  transition:opacity .5s .05s cubic-bezier(.16,1,.3,1), transform .5s .05s cubic-bezier(.16,1,.3,1);
+}
+.section-eyebrow.visible{opacity:1;transform:translateX(0)}
+
+/* Friendlier game card hover glow */
+.game-card::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(255,255,255,0.04) 0%,transparent 70%);
+  opacity:0;transition:opacity .35s;pointer-events:none;
+}
+.game-card:hover::after{opacity:1}
+
+/* Banner zoom on hover */
+.game-banner,.game-thumb{transition:transform .5s cubic-bezier(.16,1,.3,1),filter .5s}
+.game-card:hover .game-banner,.game-card:hover .game-thumb{transform:scale(1.04);filter:brightness(.95)}
 </style>
 </head>
 <body>
@@ -480,11 +644,14 @@ footer p{
   <div class="script-wrap">
     <div class="script-bar">
       <div class="script-dots"><span></span><span></span><span></span></div>
-      <span class="script-file">main_script.lua</span>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px">LOADSTRING</span>
+      <div class="script-tabs">
+        <button class="script-tab active" id="tab-main" onclick="switchTab('main')">Main</button>
+        <button class="script-tab" id="tab-backup" onclick="switchTab('backup')">Backup</button>
+      </div>
+
     </div>
     <div class="script-body">
-      <div class="script-code" id="main-script">loadstring(game:HttpGet("https://obfuscatorhub.vercel.app/api/FH7GgW0r"))()</div>
+      <div class="script-code" id="main-script">loadstring(game:HttpGet("https://obfuscatorhub.lol/api/FH7GgW0r"))()</div>
       <div class="script-actions">
         <button class="copy-btn" id="copy-btn" onclick="copyScript()">
           <img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI0IiB4PSI4IiB5PSIyIiByeD0iMSIgcnk9IjEiIC8+CiAgPHBhdGggZD0iTTE2IDRoMmEyIDIgMCAwIDEgMiAydjE0YTIgMiAwIDAgMS0yIDJINmEyIDIgMCAwIDEtMi0yVjZhMiAyIDAgMCAxIDItMmgyIiAvPgo8L3N2Zz4K" width="12" height="12" alt="" id="copy-icon">
@@ -509,8 +676,18 @@ footer p{
       <div class="game-ph" style="display:none"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8bGluZSB4MT0iNiIgeDI9IjEwIiB5MT0iMTEiIHkyPSIxMSIgLz4KICA8bGluZSB4MT0iOCIgeDI9IjgiIHkxPSI5IiB5Mj0iMTMiIC8+CiAgPGxpbmUgeDE9IjE1IiB4Mj0iMTUuMDEiIHkxPSIxMiIgeTI9IjEyIiAvPgogIDxsaW5lIHgxPSIxOCIgeDI9IjE4LjAxIiB5MT0iMTAiIHkyPSIxMCIgLz4KICA8cGF0aCBkPSJNMTcuMzIgNUg2LjY4YTQgNCAwIDAgMC0zLjk3OCAzLjU5Yy0uMDA2LjA1Mi0uMDEuMTAxLS4wMTcuMTUyQzIuNjA0IDkuNDE2IDIgMTQuNDU2IDIgMTZhMyAzIDAgMCAwIDMgM2MxIDAgMS41LS41IDItMWwxLjQxNC0xLjQxNEEyIDIgMCAwIDEgOS44MjggMTZoNC4zNDRhMiAyIDAgMCAxIDEuNDE0LjU4NkwxNyAxOGMuNS41IDEgMSAyIDFhMyAzIDAgMCAwIDMtM2MwLTEuNTQ1LS42MDQtNi41ODQtLjY4NS03LjI1OC0uMDA3LS4wNS0uMDExLS4xLS4wMTctLjE1MUE0IDQgMCAwIDAgMTcuMzIgNXoiIC8+Cjwvc3ZnPgo=" alt=""></div>
       <div class="game-body">
         <h3>Rivals</h3>
-        <p>1v1 to 5v5 FPS duels. Auto-aim, ESP, and silent aim.</p>
-        <span class="game-tag"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgLz4KICA8bGluZSB4MT0iMjIiIHgyPSIxOCIgeTE9IjEyIiB5Mj0iMTIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSIyIiB5MT0iMTIiIHkyPSIxMiIgLz4KICA8bGluZSB4MT0iMTIiIHgyPSIxMiIgeTE9IjYiIHkyPSIyIiAvPgogIDxsaW5lIHgxPSIxMiIgeDI9IjEyIiB5MT0iMjIiIHkyPSIxOCIgLz4KPC9zdmc+Cg==" alt="">FPS · ESP</span>
+                <div class="game-feats">
+          <span class="game-feat">Aimbot</span>
+          <span class="game-feat">Triggerbot</span>
+          <span class="game-feat">Unlock All Skins</span>
+          <span class="game-feat">Fly</span>
+          <span class="game-feat">Ragebot</span>
+          <span class="game-feat">Anti Katana</span>
+          <span class="game-feat">ESP</span>
+          <span class="game-feat">Infinite Jump</span>
+          <span class="game-feat">Config Saver</span>
+          <span class="game-feat">+ More</span>
+        </div>
       </div>
     </div>
     <div class="game-card">
@@ -522,8 +699,12 @@ footer p{
       <div class="game-ph" style="display:none"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8bGluZSB4MT0iNiIgeDI9IjEwIiB5MT0iMTEiIHkyPSIxMSIgLz4KICA8bGluZSB4MT0iOCIgeDI9IjgiIHkxPSI5IiB5Mj0iMTMiIC8+CiAgPGxpbmUgeDE9IjE1IiB4Mj0iMTUuMDEiIHkxPSIxMiIgeTI9IjEyIiAvPgogIDxsaW5lIHgxPSIxOCIgeDI9IjE4LjAxIiB5MT0iMTAiIHkyPSIxMCIgLz4KICA8cGF0aCBkPSJNMTcuMzIgNUg2LjY4YTQgNCAwIDAgMC0zLjk3OCAzLjU5Yy0uMDA2LjA1Mi0uMDEuMTAxLS4wMTcuMTUyQzIuNjA0IDkuNDE2IDIgMTQuNDU2IDIgMTZhMyAzIDAgMCAwIDMgM2MxIDAgMS41LS41IDItMWwxLjQxNC0xLjQxNEEyIDIgMCAwIDEgOS44MjggMTZoNC4zNDRhMiAyIDAgMCAxIDEuNDE0LjU4NkwxNyAxOGMuNS41IDEgMSAyIDFhMyAzIDAgMCAwIDMtM2MwLTEuNTQ1LS42MDQtNi41ODQtLjY4NS03LjI1OC0uMDA3LS4wNS0uMDExLS4xLS4wMTctLjE1MUE0IDQgMCAwIDAgMTcuMzIgNXoiIC8+Cjwvc3ZnPgo=" alt=""></div>
       <div class="game-body">
         <h3>Steal an Egg</h3>
-        <p>Auto-steal, egg ESP, speed boost. Farm eggs AFK.</p>
-        <span class="game-tag"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTIgOFY0SDgiIC8+CiAgPHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjEyIiB4PSI0IiB5PSI4IiByeD0iMiIgLz4KICA8cGF0aCBkPSJNMiAxNGgyIiAvPgogIDxwYXRoIGQ9Ik0yMCAxNGgyIiAvPgogIDxwYXRoIGQ9Ik0xNSAxM3YyIiAvPgogIDxwYXRoIGQ9Ik05IDEzdjIiIC8+Cjwvc3ZnPgo=" alt="">Auto Farm</span>
+        <div class="game-feats">
+          <span class="game-feat">Auto Steal Egg</span>
+          <span class="game-feat">Speed Changer</span>
+          <span class="game-feat">Anti Trap</span>
+          <span class="game-feat">Anti Ragdoll</span>
+        </div>
       </div>
     </div>
     <div class="game-card">
@@ -535,8 +716,13 @@ footer p{
       <div class="game-ph" style="display:none"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8bGluZSB4MT0iNiIgeDI9IjEwIiB5MT0iMTEiIHkyPSIxMSIgLz4KICA8bGluZSB4MT0iOCIgeDI9IjgiIHkxPSI5IiB5Mj0iMTMiIC8+CiAgPGxpbmUgeDE9IjE1IiB4Mj0iMTUuMDEiIHkxPSIxMiIgeTI9IjEyIiAvPgogIDxsaW5lIHgxPSIxOCIgeDI9IjE4LjAxIiB5MT0iMTAiIHkyPSIxMCIgLz4KICA8cGF0aCBkPSJNMTcuMzIgNUg2LjY4YTQgNCAwIDAgMC0zLjk3OCAzLjU5Yy0uMDA2LjA1Mi0uMDEuMTAxLS4wMTcuMTUyQzIuNjA0IDkuNDE2IDIgMTQuNDU2IDIgMTZhMyAzIDAgMCAwIDMgM2MxIDAgMS41LS41IDItMWwxLjQxNC0xLjQxNEEyIDIgMCAwIDEgOS44MjggMTZoNC4zNDRhMiAyIDAgMCAxIDEuNDE0LjU4NkwxNyAxOGMuNS41IDEgMSAyIDFhMyAzIDAgMCAwIDMtM2MwLTEuNTQ1LS42MDQtNi41ODQtLjY4NS03LjI1OC0uMDA3LS4wNS0uMDExLS4xLS4wMTctLjE1MUE0IDQgMCAwIDAgMTcuMzIgNXoiIC8+Cjwvc3ZnPgo=" alt=""></div>
       <div class="game-body">
         <h3>MM2</h3>
-        <p>Murderer ESP, gun snapper, auto-collect coins.</p>
-        <span class="game-tag"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMi4wNjIgMTIuMzQ4YTEgMSAwIDAgMSAwLS42OTYgMTAuNzUgMTAuNzUgMCAwIDEgMTkuODc2IDAgMSAxIDAgMCAxIDAgLjY5NiAxMC43NSAxMC43NSAwIDAgMS0xOS44NzYgMCIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzIiAvPgo8L3N2Zz4K" alt="">ESP · Coins</span>
+        <div class="game-feats">
+          <span class="game-feat">Kill All</span>
+          <span class="game-feat">Auto Shoot</span>
+          <span class="game-feat">ESP</span>
+          <span class="game-feat">Auto Get Gun</span>
+          <span class="game-feat">Hitbox Expander</span>
+        </div>
       </div>
     </div>
     <div class="game-card">
@@ -548,8 +734,12 @@ footer p{
       <div class="game-ph" style="display:none"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8bGluZSB4MT0iNiIgeDI9IjEwIiB5MT0iMTEiIHkyPSIxMSIgLz4KICA8bGluZSB4MT0iOCIgeDI9IjgiIHkxPSI5IiB5Mj0iMTMiIC8+CiAgPGxpbmUgeDE9IjE1IiB4Mj0iMTUuMDEiIHkxPSIxMiIgeTI9IjEyIiAvPgogIDxsaW5lIHgxPSIxOCIgeDI9IjE4LjAxIiB5MT0iMTAiIHkyPSIxMCIgLz4KICA8cGF0aCBkPSJNMTcuMzIgNUg2LjY4YTQgNCAwIDAgMC0zLjk3OCAzLjU5Yy0uMDA2LjA1Mi0uMDEuMTAxLS4wMTcuMTUyQzIuNjA0IDkuNDE2IDIgMTQuNDU2IDIgMTZhMyAzIDAgMCAwIDMgM2MxIDAgMS41LS41IDItMWwxLjQxNC0xLjQxNEEyIDIgMCAwIDEgOS44MjggMTZoNC4zNDRhMiAyIDAgMCAxIDEuNDE0LjU4NkwxNyAxOGMuNS41IDEgMSAyIDFhMyAzIDAgMCAwIDMtM2MwLTEuNTQ1LS42MDQtNi41ODQtLjY4NS03LjI1OC0uMDA3LS4wNS0uMDExLS4xLS4wMTctLjE1MUE0IDQgMCAwIDAgMTcuMzIgNXoiIC8+Cjwvc3ZnPgo=" alt=""></div>
       <div class="game-body">
         <h3>Flick</h3>
-        <p>Auto-flick, instant win assist, hitbox expander.</p>
-        <span class="game-tag"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTUuOTE0IDRhMS41IDEuNSAwIDAwLTIuNDc0LTEuNTYxbC05IDlBMS41IDEuNSAwIDAwNS41IDE0aDQuMDAyYS41LjUgMCAwMS40NzEuNjY2TDguMDg2IDIwYTEuNSAxLjUgMCAwMDIuNDc1IDEuNTZsOS05QTEuNSAxLjUgMCAwMDE4LjUgMTBoLTMuOTk3YS41LjUgMCAwMS0uNDcyLS42Njd6IiAvPgo8L3N2Zz4K" alt="">Aimbot</span>
+                <div class="game-feats">
+          <span class="game-feat">Aimbot</span>
+          <span class="game-feat">Team Check</span>
+          <span class="game-feat">ESP</span>
+          <span class="game-feat">AI Play (Beta)</span>
+        </div>
       </div>
     </div>
     <div class="game-card">
@@ -561,8 +751,42 @@ footer p{
       <div class="game-ph" style="display:none"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8bGluZSB4MT0iNiIgeDI9IjEwIiB5MT0iMTEiIHkyPSIxMSIgLz4KICA8bGluZSB4MT0iOCIgeDI9IjgiIHkxPSI5IiB5Mj0iMTMiIC8+CiAgPGxpbmUgeDE9IjE1IiB4Mj0iMTUuMDEiIHkxPSIxMiIgeTI9IjEyIiAvPgogIDxsaW5lIHgxPSIxOCIgeDI9IjE4LjAxIiB5MT0iMTAiIHkyPSIxMCIgLz4KICA8cGF0aCBkPSJNMTcuMzIgNUg2LjY4YTQgNCAwIDAgMC0zLjk3OCAzLjU5Yy0uMDA2LjA1Mi0uMDEuMTAxLS4wMTcuMTUyQzIuNjA0IDkuNDE2IDIgMTQuNDU2IDIgMTZhMyAzIDAgMCAwIDMgM2MxIDAgMS41LS41IDItMWwxLjQxNC0xLjQxNEEyIDIgMCAwIDEgOS44MjggMTZoNC4zNDRhMiAyIDAgMCAxIDEuNDE0LjU4NkwxNyAxOGMuNS41IDEgMSAyIDFhMyAzIDAgMCAwIDMtM2MwLTEuNTQ1LS42MDQtNi41ODQtLjY4NS03LjI1OC0uMDA3LS4wNS0uMDExLS4xLS4wMTctLjE1MUE0IDQgMCAwIDAgMTcuMzIgNXoiIC8+Cjwvc3ZnPgo=" alt=""></div>
       <div class="game-body">
         <h3>Slap Battles</h3>
-        <p>Infinite range, auto-slap, knockback multiplier.</p>
-        <span class="game-tag"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTAgMTQuNjZWMTdhMSAxIDAgMCAxLTEgMSAyIDIgMCAwIDAtMiAydjIiIC8+CiAgPHBhdGggZD0iTTE0IDE0LjY2VjE3YTEgMSAwIDAgMCAxIDEgMiAyIDAgMCAxIDIgMnYyIiAvPgogIDxwYXRoIGQ9Ik0xNy45MTYgMTBIMTkuNUEyLjUgMi41IDAgMCAwIDIyIDcuNVY1YTEgMSAwIDAgMC0xLTFoLTMiIC8+CiAgPHBhdGggZD0iTTQgMjJoMTYiIC8+CiAgPHBhdGggZD0iTTYgOWE2IDYgMCAwIDAgMTIgMFYzYTEgMSAwIDAgMC0xLTFIN2ExIDEgMCAwIDAtMSAxeiIgLz4KICA8cGF0aCBkPSJNNi4wODQgMTBINC41QTIuNSAyLjUgMCAwIDEgMiA3LjVWNWExIDEgMCAwIDEgMS0xaDMiIC8+Cjwvc3ZnPgo=" alt="">Farmer</span>
+                <div class="game-feats">
+          <span class="game-feat">Triggerbot</span>
+          <span class="game-feat">Hitbox Expander</span>
+          <span class="game-feat">Auto Play (AI)</span>
+          <span class="game-feat">Kill All</span>
+        </div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-media">
+        <img class="game-banner" src="https://tr.rbxcdn.com/180DAY-4e541a0e7376f0235f0eeb0192e96ddb/768/432/Image/Png/noFilter" alt="Prison Life">
+        <img class="game-icon loaded" src="https://tr.rbxcdn.com/180DAY-fee67c1f98361eac15c13f80b03592ae/512/512/Image/Png/noFilter" alt="prison life icon">
+        <div class="game-discord"><img class="game-discord-icon" src="https://tr.rbxcdn.com/180DAY-fee67c1f98361eac15c13f80b03592ae/512/512/Image/Png/noFilter" alt="prison life icon"></div>
+      </div>
+      <div class="game-body">
+        <h3>Prison Life</h3>
+        <div class="game-feats">
+          <span class="game-feat">Auto Shoot</span>
+          <span class="game-feat">Silent Aim</span>
+          <span class="game-feat">FOV Circle</span>
+          <span class="game-feat">ESP</span>
+          <span class="game-feat">Auto Get Gun</span>
+          <span class="game-feat">HvH</span>
+          <span class="game-feat">Kill All</span>
+        </div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-media">
+        <img class="game-banner" data-universe="volleyball" src="https://tr.rbxcdn.com/180DAY-9bd05bd03c4d265eb5e9306d8523064d/768/432/Image/Png/noFilter" alt="Volleyball Legends" data-game="5">
+        <img class="game-icon loaded" data-universe="volleyball" src="https://tr.rbxcdn.com/180DAY-b4c89f91604aff1c0d67599b36ccdca5/512/512/Image/Png/noFilter" alt="volleyball legends icon">
+        <div class="game-discord"><img class="game-discord-icon" data-discord-icon="volleyball" src="https://tr.rbxcdn.com/180DAY-b4c89f91604aff1c0d67599b36ccdca5/512/512/Image/Png/noFilter" alt="volleyball legends icon"></div>
+      </div>
+      <div class="game-body">
+        <h3>Volleyball Legends</h3>
+        <span class="game-tag"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgLz4KICA8cGF0aCBkPSJNMTIgNnY2bDQgMiIgLz4KPC9zdmc+Cg==" alt="">Upcoming</span>
       </div>
     </div>
     <div class="game-card" style="border:1px dashed rgba(255,255,255,0.06)">
@@ -571,7 +795,6 @@ footer p{
       </div>
       <div class="game-body">
         <h3>More Coming</h3>
-        <p>New scripts drop regularly. More supported games coming soon.</p>
         <span class="game-tag"><img src="data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgLz4KICA8cGF0aCBkPSJNMTIgNnY2bDQgMiIgLz4KPC9zdmc+Cg==" alt="">Soon</span>
       </div>
     </div>
@@ -579,8 +802,8 @@ footer p{
 
   <div class="stats-row">
     <div class="stat"><span class="stat-val">FREE</span><span class="stat-label">Always &amp; Forever</span></div>
-    <div class="stat"><span class="stat-val">5+</span><span class="stat-label">Games Supported</span></div>
-    <div class="stat"><span class="stat-val">∞</span><span class="stat-label">No Key System</span></div>
+    <div class="stat"><span class="stat-val"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"/></svg></span><span class="stat-label">Supports Almost All Roblox Games</span></div>
+    <div class="stat"><span class="stat-val"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"/></svg></span><span class="stat-label">No Key System</span></div>
   </div>
 </section>
 
@@ -716,6 +939,17 @@ footer p{
   requestAnimationFrame(frame);
 })();
 
+// ── Script Tabs ──
+const SCRIPTS={
+  main:'loadstring(game:HttpGet("https://obfuscatorhub.lol/api/FH7GgW0r"))()',
+  backup:'loadstring(game:HttpGet("https://obfuscatorhub.vercel.app/api/FH7GgW0r"))()'
+};
+function switchTab(tab){
+  document.getElementById('main-script').textContent=SCRIPTS[tab];
+  document.querySelectorAll('.script-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+
 // ── Copy ──
 function copyScript(){
   const text=document.getElementById('main-script').innerText;
@@ -743,6 +977,35 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
   });
 });
+
+// ── Entrance animations (IntersectionObserver) ──
+(function(){
+  const targets=[
+    '.reveal',
+    '.feat-card',
+    '.game-card',
+    '.script-wrap',
+    '.stat',
+    '.rule',
+    '.section-eyebrow'
+  ];
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+
+  document.querySelectorAll(targets.join(',')).forEach(el=>io.observe(el));
+
+  // Add reveal class to section headings & paragraphs
+  document.querySelectorAll('.section-h,.section-p').forEach(el=>{
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+})();
 </script>
 </body>
 </html>
